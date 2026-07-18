@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CS416 Narrative Visualization Essay</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">
+@page {
+size: Letter;
+margin: 0.7in 0.85in;
+}
+html { font-size: 11pt; }
+body {
+font-family: "Georgia", "Times New Roman", serif;
+line-height: 1.4;
+color: #111;
+max-width: none;
+margin: 0;
+padding: 0;
+}
+h1 {
+font-size: 17pt;
+color: #1a2e1a;
+margin: 0 0 3pt;
+padding: 0;
+font-weight: 700;
+}
+h1 + p {
+color: #444;
+font-size: 9.5pt;
+line-height: 1.4;
+margin: 0 0 8pt;
+}
+h2 {
+font-size: 12.5pt;
+color: #1a2e1a;
+margin: 10pt 0 4pt;
+padding: 0;
+page-break-after: avoid;
+border: none;
+}
+h3 {
+font-size: 10.5pt;
+color: #333;
+margin: 6pt 0 2pt;
+padding: 0;
+page-break-after: avoid;
+font-weight: 700;
+}
+p, ul, ol { margin: 3pt 0; }
+li { margin: 1.5pt 0; }
+ul, ol { padding-left: 20pt; }
+strong { color: #000; }
+em { color: #333; font-style: italic; }
+a { color: #2a4a7a; text-decoration: underline; }
+
+h2 + p em:only-child, h2 + p em:first-child {
+color: #666;
+font-size: 9.5pt;
+}
+
+h2 + p:has(em) {
+color: #666;
+font-size: 9.5pt;
+font-style: italic;
+margin: 0 0 4pt;
+}
+code, pre {
+font-family: "SF Mono", "Menlo", monospace;
+font-size: 8.5pt;
+}
+pre {
+background: #f7f7f7;
+border-left: 2pt solid #b8860b;
+padding: 5pt 8pt;
+margin: 4pt 0;
+overflow-x: hidden;
+page-break-inside: avoid;
+line-height: 1.35;
+}
+code {
+background: #f2f2f2;
+padding: 0.5pt 3pt;
+border-radius: 2pt;
+}
+pre code { background: transparent; padding: 0; }
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 4pt 0 6pt;
+font-size: 9.5pt;
+page-break-inside: avoid;
+}
+th, td {
+border: 0.5pt solid #bbb;
+padding: 3pt 5pt;
+text-align: left;
+vertical-align: top;
+}
+th {
+background: #f0e4b8;
+color: #1a2e1a;
+font-weight: 700;
+}
+hr {
+border: none;
+border-top: 0.5pt solid #ccc;
+margin: 8pt 0;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CS416 Narrative Visualization Essay</h1>
+</header>
+<h1 id="narrative-visualization-what-makes-a-movie-great">Narrative
+Visualization: What Makes a Movie Great?</h1>
+<p><strong>by Rahul Joshi · rahulpj2@illinois.edu</strong> · CS 416 Data
+Visualization, UIUC MCS-DS · Summer 2026 · Live:
+https://rahul-joshi.github.io/cs416-narrative-viz/ · Source code:
+https://github.com/rahul-joshi/cs416-narrative-viz · Source dataset: <a href="https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows">IMDB
+Top 1000 films (Kaggle)</a></p>
+<hr />
+<h2 id="messaging">Messaging</h2>
+<p><em>What is the message you are trying to communicate with the
+narrative visualization?</em></p>
+<p>The message is that there is no single definition of a “great” film.
+Greatness is contextual, depending on the era and the genre through
+which you examine the data.</p>
+<p>The visualization argues this by taking the viewer through the IMDB
+Top 1000 twice - once ordered by decade, once ordered by genre - showing
+that each slice reshuffles what “greatness” looks like. The 2000s
+produced the most Top-1000 films (237) but has the lowest average rating
+(7.90). The 1950s produced only 56 films but has the highest average
+(8.06). <em>The Godfather</em> defines the 1970s while <em>The Shawshank
+Redemption</em> defines the 1990s; the two are incomparable in style yet
+both are unambiguously “great.” Rather than telling the viewer this, the
+visualization lets them discover it by walking through the scenes
+themselves.</p>
+<hr />
+<h2 id="narrative-structure">Narrative Structure</h2>
+<p><em>Which structure was your narrative visualization designed to
+follow (martini glass, interactive slide show or drop-down story)? How
+does your narrative visualization follow that structure?</em></p>
+<p><strong>Interactive Slide Show with a landing gate</strong>.</p>
+<p>The viewer arrives on a single-screen landing page that poses the
+question, provides one paragraph of context, and offers two entry
+buttons: <em>Explore by Decade</em> and <em>Explore by Genre</em>. That
+initial choice is the drill-down step, letting the viewer pick their
+lens before any scene is shown.</p>
+<p>Inside the chosen path, the experience is a canonical ordered
+slideshow. Scenes are traversed via <em>Previous / Home / Next</em>
+buttons or by clicking any breadcrumb item to jump directly. Free-form
+interaction (bubble hover for full film details, click on a genre in the
+legend to filter) is available on every scene, not gated to the end. A
+“Switch to X view” link at the top lets the viewer restart the slideshow
+through the alternate lens.</p>
+<p><strong>Where the drill-down happens.</strong> The primary drill-down
+opportunity is at the very top of the structure (path selection on the
+landing page). A secondary, ongoing drill-down opportunity is available
+on every scene through the tooltip and the legend filter, so the viewer
+can explore individual films or genres at any point rather than only at
+the end.</p>
+<p>Martini glass was rejected because a fixed non-interactive intro
+would fight the message: the claim that greatness is personal cannot be
+delivered by a passive script.</p>
+<hr />
+<h2 id="visual-structure">Visual Structure</h2>
+<p><em>What visual structure is used for each scene? How does it ensure
+the viewer can understand the data and navigate the scene? How does it
+highlight to urge the viewer to focus on the important parts? How does
+it help the viewer transition to other scenes?</em></p>
+<p>Every one of the 17 data-scenes uses the same two-chart template:</p>
+<ul>
+<li><strong>Primary chart: beeswarm plot.</strong> Every film in the
+current slice is one bubble on a horizontal IMDB-rating axis. Vertical
+position is determined by a <code>d3.forceSimulation</code> collision
+solver so no bubble is hidden. Bubble <em>size</em> encodes number of
+votes (square-root scale). Bubble <em>color</em> encodes primary genre
+using a fixed 20-color palette that is stable across every scene.</li>
+<li><strong>Secondary chart: ranked horizontal bar</strong> of the top
+10 films of the slice by IMDB rating, with bar color matching the
+primary genre color used in the beeswarm.</li>
+<li><strong>Shared chrome</strong> around both charts: a yellow scene
+banner naming the current slice, a three-button nav row, a clickable
+breadcrumb strip, an orange hint line telling the viewer to hover, and a
+genre legend on the right that doubles as a filter.</li>
+</ul>
+<p><strong>Understanding.</strong> The axis, encoding, and interaction
+semantics are established on the first scene and never change. Every
+subsequent scene is cognitively free - the viewer can spend attention on
+the data, not on decoding the chart.</p>
+<p><strong>Navigation within a scene.</strong> The viewer reads
+top-to-bottom by default: the beeswarm shape summarizes the slice at a
+glance, then the ranked bar names the specific standouts. Hovering any
+bubble opens a dark structured tooltip with full film details (director,
+genres, IMDB, Metacritic, votes, gross). Clicking a genre in the
+right-side legend focuses attention on a subset by dimming all other
+genres to 15% opacity. The orange hint line under the scene banner
+explicitly tells the viewer that these two interactions exist.</p>
+<p><strong>Focus.</strong> Three overlapping mechanisms direct the eye:
+bubble size (most-voted films dominate visually), programmatic
+annotation labels placed inside the plot area, and the legend filter
+(clicking a genre dims all others to 15% opacity).</p>
+<p><strong>Transitions.</strong> Because axes, palette, encoding, and
+layout are identical across every scene, moving from <em>The 1930s</em>
+to <em>The 2000s</em> is a single Next-click and a re-read of the same
+axes with new dots. The template itself is the connective tissue between
+scenes; no narration is required.</p>
+<hr />
+<h2 id="scenes">Scenes</h2>
+<p><em>What are the scenes of your narrative visualization? How are the
+scenes ordered, and why?</em></p>
+<p><strong>Landing scene</strong> (scene 0). Poses the question,
+provides context, offers two path buttons. Features an animated
+mini-beeswarm that gently choreographs all 1000 films into their rating
+positions on page load, previewing the chart type used inside.</p>
+<p><strong>Decade path</strong> (9 scenes, chronological): the 1930s,
+1940s, 1950s, 1960s, 1970s, 1980s, 1990s, <strong>2000s</strong>
+(default entry), 2010s.</p>
+<p><strong>Genre path</strong> (8 scenes, by prevalence in the Top
+1000): <strong>Drama</strong> (default entry), Comedy, Crime, Adventure,
+Action, Thriller, Biography, Animation.</p>
+<p><strong>Order and rationale.</strong> The decade path is
+chronological because the viewer’s mental model of “cinema evolution” is
+time-linear. A passive Next-clicker retraces the natural arc from
+black-and-white classics through the 1970s auteur era into the modern
+volume era of the 2000s and 2010s. The genre path is ordered by
+prevalence in the Top 1000 because count is the most stable,
+audience-neutral ordering: Drama tags 723 of 1000 films, Animation only
+82.</p>
+<p>Default entry into each path lands the viewer on the most-populated
+slice (2000s for decade, Drama for genre), so the first impression is
+dense and visually rich rather than sparse.</p>
+<hr />
+<h2 id="annotations">Annotations</h2>
+<p><em>What template was followed for the annotations, and why that
+template? How are the annotations used to support the messaging? Do the
+annotations change within a single scene, and if so, how and
+why?</em></p>
+<p><strong>Template.</strong> Short underlined serif text connected to a
+specific bubble by a thin gray dashed line, placed in empty space near
+but not overlapping the target bubble. This lightweight margin-note
+style is drawn from the <em>Modern Olympics</em> reference visualization
+shown in class - it stays quiet and lets the beeswarm remain the visual
+star. An earlier draft used <code>d3.annotationCalloutCircle</code> with
+cream backgrounds and bold titles; it looked polished but drew attention
+away from the data, so I rewrote them.</p>
+<p><strong>Three annotations per scene, generated
+programmatically:</strong></p>
+<ul>
+<li><em>“Highest rated”</em> - film with maximum IMDB rating (the
+critical peak).</li>
+<li><em>“Audience favorite”</em> - film with the most votes (the popular
+peak).</li>
+<li><em>“Biggest box office”</em> - film with the highest gross revenue,
+when available (the commercial peak).</li>
+</ul>
+<p>Together these three lenses answer <em>“what did greatness mean
+here?”</em> from three complementary angles. On the 1970s scene, for
+instance, all three overlap on <em>The Godfather</em> except gross,
+where <em>Star Wars</em> dominates.</p>
+<p><strong>Annotations do change within a scene.</strong> When the
+viewer clicks a genre in the legend, the visualization filters to that
+genre and recomputes all three annotations using only matching films. On
+the 2000s scene with Drama filter active, <em>“Highest rated”</em>
+points to <em>The Departed</em> rather than <em>The Dark Knight</em> (a
+mixed-genre Action/Crime/Drama). The annotations follow the viewer’s
+attention rather than sitting statically.</p>
+<hr />
+<h2 id="parameters-and-states">Parameters and States</h2>
+<p><em>What are the parameters of the narrative visualization? What are
+the states of the narrative visualization? How are the parameters used
+to define the state and each scene?</em></p>
+<p><strong>Parameters</strong> (a single JavaScript <code>state</code>
+object; every rendered pixel is a pure function of these four
+fields):</p>
+<ul>
+<li><strong>P1: <code>page</code></strong> - <code>&quot;landing&quot;</code> or
+<code>&quot;viz&quot;</code>. Top-level page.</li>
+<li><strong>P2: <code>path</code></strong> - <code>&quot;decade&quot;</code> or
+<code>&quot;genre&quot;</code>. Active narrative path.</li>
+<li><strong>P3: <code>scene</code></strong> - integer
+<code>0..N-1</code>. Index into <code>DECADES[]</code> (length 9) or
+<code>GENRES[]</code> (length 8).</li>
+<li><strong>P4: <code>filterGenre</code></strong> - <code>null</code> or
+one of the 20 genres. Legend filter within a scene.</li>
+</ul>
+<p><strong>States:</strong></p>
+<ul>
+<li><strong>S1 (Landing):</strong> <code>page = &quot;landing&quot;</code>. Entry
+buttons are the only interactive elements.</li>
+<li><strong>S2 (Path-active, no filter):</strong>
+<code>page = &quot;viz&quot;</code>, <code>filterGenre = null</code>. A specific
+scene is rendered; all bubbles at full opacity; annotations reference
+the full slice.</li>
+<li><strong>S3 (Path-active, genre filtered):</strong>
+<code>page = &quot;viz&quot;</code>, <code>filterGenre = X</code>. Non-matching
+bubbles dimmed to 15% opacity; annotations recomputed to reference only
+matching films; a red “clear filter” affordance appears below the
+legend.</li>
+</ul>
+<p><strong>How parameters define each scene.</strong> The master
+<code>render()</code> function is deterministic: clears both chart
+containers, updates banner/nav/breadcrumb from <code>state</code>,
+dispatches to <code>renderDecadePath()</code> or
+<code>renderGenrePath()</code> based on <code>P2</code>, uses
+<code>P3</code> as an index into the path’s array to select the data
+slice, and passes <code>P4</code> down to the shared
+<code>drawBeeswarm()</code> and <code>drawTopNBar()</code> components.
+Given the same four field values, the same view renders every time.</p>
+<hr />
+<h2 id="triggers-and-affordances">Triggers and Affordances</h2>
+<p><em>What are the triggers that connect user actions to changes of
+state in the narrative visualization? What affordances are provided to
+the user to communicate to them what options are available to
+them?</em></p>
+<p><strong>Triggers</strong> (each mutates <code>state</code> and calls
+<code>render()</code>):</p>
+<ul>
+<li><strong>T1: Click <em>Explore by Decade</em></strong> on landing →
+<code>P1=&quot;viz&quot;</code>, <code>P2=&quot;decade&quot;</code>, <code>P3=default</code>
+→ <strong>S2</strong></li>
+<li><strong>T2: Click <em>Explore by Genre</em></strong> on landing →
+<code>P1=&quot;viz&quot;</code>, <code>P2=&quot;genre&quot;</code>, <code>P3=0</code> →
+<strong>S2</strong></li>
+<li><strong>T3: Click <em>« Previous</em></strong> in nav row →
+<code>P3--</code></li>
+<li><strong>T4: Click <em>Home</em></strong> in nav row →
+<code>P1=&quot;landing&quot;</code> → <strong>S1</strong></li>
+<li><strong>T5: Click <em>Next »</em></strong> in nav row →
+<code>P3++</code></li>
+<li><strong>T6: Click a breadcrumb item</strong>
+(e.g. <code>1970s</code>, <code>Comedy</code>) →
+<code>P3 = target index</code>, <code>P4 = null</code></li>
+<li><strong>T7: Click a genre row</strong> in the legend →
+<code>P4 = clicked</code> (or <code>null</code> if already active) →
+toggles <strong>S2 ↔︎ S3</strong></li>
+<li><strong>T8: Click <em>Switch to X view</em></strong> link →
+<code>P2</code> flips, <code>P3 = default</code> for new path</li>
+<li><strong>Hover</strong> any bubble/bar (no state change; opens the
+shared dark tooltip)</li>
+</ul>
+<p><strong>Affordances:</strong></p>
+<ul>
+<li>Buttons look tactile: visible border, drop-shadow, hover-lift
+effect.</li>
+<li>Disabled means unavailable: <em>Previous</em> is greyed on the first
+scene; <em>Next</em> on the last.</li>
+<li>The active breadcrumb item is boxed in red; every other item is
+clickable and shows a gold-hover state.</li>
+<li>The genre legend uses a pointer cursor to signal that swatches are
+clickable; the active genre becomes bold; a red “clear filter” link
+appears when a filter is set.</li>
+<li>A defensive one-line hint under every scene banner reads <em>“Tip 1:
+hover over any bubble for full film details. Tip 2: use Previous / Next
+to walk through the story.”</em> Even a viewer who ignores every visual
+cue is directly told the two primary interactions.</li>
+<li>Redundant paths exist: reaching the 1970s scene can happen through
+clicking Next repeatedly, Previous, or the <code>1970s</code> breadcrumb
+directly - accommodating linear readers, random-access users, and
+viewers arriving mid-story.</li>
+</ul>
+</body>
+</html>
