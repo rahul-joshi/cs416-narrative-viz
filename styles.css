@@ -1,0 +1,313 @@
+/* ================================================================
+   CS416 Final Project - Narrative Visualization
+   Clean minimalist style inspired by rfonod/narrative-visualization
+   ================================================================ */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.55;
+  font-size: 15px;
+}
+
+a { color: #2a4a7a; text-decoration: underline; }
+a:hover { color: #0a1a4a; }
+
+.hidden { display: none !important; }
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px 60px;
+}
+
+/* ==================== LANDING PAGE ==================== */
+
+.landing-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  color: #1a2e1a;
+  margin: 30px 0 24px;
+  letter-spacing: 0.3px;
+}
+.landing-title em {
+  color: #b8860b;
+  font-style: italic;
+}
+
+#landing-hook {
+  display: block;
+  margin: 20px auto 30px;
+  max-width: 720px;
+  height: 160px;
+}
+
+.landing-lede {
+  max-width: 720px;
+  margin: 12px auto;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+}
+.landing-lede em { font-style: italic; color: #8a5a00; }
+.landing-lede strong { color: #1a1a1a; }
+
+.entry-buttons {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin: 36px 0 24px;
+  flex-wrap: wrap;
+}
+.entry-btn {
+  border: 2px solid #333;
+  border-radius: 6px;
+  padding: 16px 28px;
+  min-width: 260px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+}
+.entry-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.entry-btn .btn-title {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.entry-btn .btn-sub {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  font-style: italic;
+}
+.entry-decade {
+  background: #fbe58a;                 /* summer-yellow like ref */
+}
+.entry-genre {
+  background: #b8d4e8;                 /* winter-blue like ref */
+}
+
+.landing-footer {
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+/* ==================== NARRATIVE PAGE ==================== */
+
+.viz-header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 12px;
+}
+.viz-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a2e1a;
+  margin: 0 0 6px;
+}
+.viz-header h1 em {
+  color: #b8860b;
+  font-style: italic;
+}
+.switch-link {
+  font-size: 13px;
+  color: #555;
+  font-style: italic;
+}
+
+/* -------- NAV BUTTONS -------- */
+#scene-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 14px 0 8px;
+}
+.nav-btn {
+  border: 2px solid #333;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #eaf6ea;
+  color: #1a2e1a;
+  min-width: 140px;
+}
+.nav-btn.home { background: #fbe58a; }
+.nav-btn:hover:not(:disabled) { background: #b8d4e8; }
+.nav-btn:disabled {
+  background: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* -------- BREADCRUMB STRIP -------- */
+.breadcrumb {
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+  margin: 6px 0 12px;
+}
+.breadcrumb .bc-label {
+  font-weight: 700;
+  margin-right: 6px;
+}
+.breadcrumb .bc-item {
+  cursor: pointer;
+  padding: 1px 4px;
+  color: #333;
+}
+.breadcrumb .bc-item:hover { color: #b8860b; text-decoration: underline; }
+.breadcrumb .bc-item.active {
+  color: #cc3333;
+  border: 1px solid #cc3333;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.breadcrumb .bc-sep { color: #bbb; margin: 0 2px; }
+
+/* -------- SCENE BANNER (yellow strip) -------- */
+.scene-banner {
+  background: #fbe58a;
+  text-align: center;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #1a2e1a;
+  border-radius: 4px;
+  margin: 12px 0 6px;
+}
+
+.hint-text {
+  text-align: center;
+  color: #d17800;
+  font-style: italic;
+  font-size: 12px;
+  margin: 6px 0 12px;
+}
+
+/* -------- CHART BLOCKS -------- */
+.chart-block {
+  width: 100%;
+  display: block;
+  margin: 8px 0;
+}
+.chart-block svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* -------- AXES / GRID -------- */
+.axis text { font-family: Georgia, serif; font-size: 11px; fill: #333; }
+.axis path, .axis line { stroke: #999; }
+.axis-label { font-size: 12px; fill: #333; font-weight: 600; }
+.gridline line { stroke: #eee; stroke-dasharray: 2 3; }
+.gridline path { display: none; }
+
+/* -------- DATA MARKS -------- */
+.dot {
+  stroke: #333;
+  stroke-width: 0.5;
+  fill-opacity: 0.75;
+  cursor: pointer;
+}
+.dot:hover { fill-opacity: 1; stroke-width: 1.5; }
+
+.bar {
+  fill: #6b8fbf;
+  cursor: pointer;
+}
+.bar:hover { fill: #b8860b; }
+
+.ridge-fill { fill-opacity: 0.6; stroke: #333; stroke-width: 0.6; }
+.ridge-label { font-size: 11px; fill: #333; font-weight: 600; }
+
+.stream path { fill-opacity: 0.85; stroke: #fff; stroke-width: 0.4; }
+
+/* -------- ANNOTATIONS (Olympics-reference style) --------
+   Simple underlined text with a thin dashed leader line.  No note bg. */
+.mv-annotation {
+  font-size: 11px;
+  fill: #1a1a1a;
+  text-decoration: underline;
+  font-family: Georgia, serif;
+}
+.mv-annotation-line {
+  stroke: #666;
+  stroke-dasharray: 2 2;
+  stroke-width: 0.8;
+  fill: none;
+}
+
+/* -------- LEGEND -------- */
+.legend-title {
+  font-size: 11px;
+  font-weight: 700;
+  fill: #333;
+}
+.legend-item {
+  font-size: 11px;
+  fill: #444;
+  cursor: pointer;
+}
+.legend-item.dim { opacity: 0.25; }
+.legend-swatch { stroke: #fff; stroke-width: 0.5; }
+
+/* -------- TOOLTIP (dark, structured) -------- */
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: #1c1c1c;
+  color: #f5f5f5;
+  padding: 12px 14px;
+  border-radius: 4px;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 300px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  border-left: 3px solid #f5c518;
+}
+#tooltip .tt-title {
+  font-weight: 700;
+  color: #f5c518;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+#tooltip .tt-section {
+  font-weight: 700;
+  color: #eaeaea;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+#tooltip .tt-item {
+  padding-left: 8px;
+  color: #d0d0d0;
+}
+#tooltip .tt-item strong { color: #f5f5f5; font-weight: 600; }
+
+/* -------- FOOTER -------- */
+.viz-footer {
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+  margin-top: 30px;
+}

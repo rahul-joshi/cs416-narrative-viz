@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>What Makes a Movie Great? &middot; CS416 Narrative Visualization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css?v=6" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+</head>
+<body>
+
+  <!-- ==================== LANDING PAGE ==================== -->
+  <section id="landing" class="page">
+    <h1 class="landing-title">What makes a movie <em>great</em>?</h1>
+
+    <div id="landing-hook"></div> <!-- mini beeswarm animation -->
+
+    <p class="landing-lede">
+      IMDB's Top 1000 spans a century of cinema, from <em>The Kid</em> (1921) to
+      <em>Parasite</em> (2019). But is a &ldquo;great&rdquo; film in 1942 the same as
+      one in 2019? Do critics and audiences ever agree? Does each decade
+      have its own idea of greatness?
+    </p>
+    <p class="landing-lede">
+      <strong>Two paths through 1000 films.</strong>
+    </p>
+
+    <div class="entry-buttons">
+      <button class="entry-btn entry-decade" data-path="decade">
+        <span class="btn-title">Explore by Decade</span>
+        <span class="btn-sub">How has cinema changed through time?</span>
+      </button>
+      <button class="entry-btn entry-genre" data-path="genre">
+        <span class="btn-title">Explore by Genre</span>
+        <span class="btn-sub">How does storytelling differ across genres?</span>
+      </button>
+    </div>
+
+    <p class="landing-footer">
+      Data: <a href="https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows"
+        target="_blank" rel="noopener">IMDB Top 1000 (Kaggle)</a>
+      &middot; Built with D3.js v7 and d3-annotation for UIUC CS416.
+    </p>
+  </section>
+
+  <!-- ==================== NARRATIVE PAGE ==================== -->
+  <section id="viz" class="page hidden">
+
+    <header class="viz-header">
+      <h1 id="viz-title">What makes a movie <em>great</em>?</h1>
+      <a href="#" id="switch-path" class="switch-link">Switch to Genre view &rarr;</a>
+    </header>
+
+    <nav id="scene-nav">
+      <button id="prev-btn" class="nav-btn">&laquo; Previous</button>
+      <button id="home-btn" class="nav-btn home">Home</button>
+      <button id="next-btn" class="nav-btn">Next &raquo;</button>
+    </nav>
+
+    <div id="breadcrumb" class="breadcrumb"></div>
+
+    <div id="scene-banner" class="scene-banner">
+      <span id="scene-banner-text">Loading&hellip;</span>
+    </div>
+
+    <p class="hint-text">
+      Tip 1: hover over any bubble for full film details &middot;
+      Tip 2: use Previous / Next to walk through the story
+    </p>
+
+    <div id="chart-primary" class="chart-block"></div>
+    <div id="chart-secondary" class="chart-block"></div>
+
+    <p class="viz-footer">
+      <a href="#" id="back-to-landing">&larr; Back to home</a>
+      &middot; Data: <a
+        href="https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows"
+        target="_blank" rel="noopener">IMDB Top 1000 (Kaggle)</a>
+    </p>
+  </section>
+
+  <!-- Tooltip lives outside pages so it can float over anything -->
+  <div id="tooltip" class="hidden"></div>
+
+  <script src="narrative.js?v=6"></script>
+</body>
+</html>
